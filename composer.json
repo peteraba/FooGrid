@@ -1,0 +1,23 @@
+{
+    "name": "peteraba/foo-grid",
+    "description": "Plain PHP Data Grid",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Foo\\Grid\\": [
+                "src/",
+                "tests/"
+            ]
+        }
+    },
+    "authors": [
+        {
+            "name": "Peter Aba",
+            "email": "peter@peteraba.com"
+        }
+    ],
+    "require-dev": {
+        "phpunit/phpunit": "^6.1"
+    }
+}
