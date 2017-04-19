@@ -1,7 +1,8 @@
 <?php
 
-namespace Foo\Grid;
+declare(strict_types = 1);
 
+namespace Foo\Grid;
 
 use Foo\Grid\Cell\Cell;
 use Foo\Grid\Collection\Actions;
@@ -9,7 +10,7 @@ use Foo\Grid\Collection\Cells;
 use Foo\Grid\Collection\Rows;
 use Foo\Grid\Row\Row;
 use Foo\Grid\Table\Table;
-use Foo\I18n\ITranslator;
+use Foo\Translate\ITranslator;
 use Opulence\Orm\IEntity;
 
 class Factory

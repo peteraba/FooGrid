@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Foo\Grid\Collection;
 
 use ArrayAccess;
@@ -7,7 +9,7 @@ use Countable;
 use Foo\Grid\Component\Component;
 use Foo\Grid\Component\IComponent;
 use Foo\Grid\Helper\StringHelper;
-use Foo\I18n\ITranslator;
+use Foo\Translate\ITranslator;
 use InvalidArgumentException;
 use Iterator;
 use LogicException;

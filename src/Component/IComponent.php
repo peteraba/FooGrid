@@ -1,8 +1,10 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Foo\Grid\Component;
 
-use Foo\I18n\ITranslator;
+use Foo\Translate\ITranslator;
 
 interface IComponent
 {

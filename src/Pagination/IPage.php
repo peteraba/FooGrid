@@ -2,10 +2,10 @@
 
 declare(strict_types = 1);
 
-namespace Foo\Grid\Pagination;
+namespace Foo\Grid\Page;
 
 use Foo\Grid\Component\IComponent;
 
-interface IPagination extends IComponent
+interface IPage extends IComponent
 {
 }

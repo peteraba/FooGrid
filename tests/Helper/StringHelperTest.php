@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Foo\Grid\Helper;
 
 class StringHelperTest extends \PHPUnit\Framework\TestCase

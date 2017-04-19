@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Foo\Grid\Table;
 
 use Foo\Grid\Collection\Cells;
 use Foo\Grid\Collection\Rows;
 use Foo\Grid\Component\Component;
-use Foo\I18n\ITranslator;
+use Foo\Translate\ITranslator;
 
 class Table extends Component implements ITable
 {

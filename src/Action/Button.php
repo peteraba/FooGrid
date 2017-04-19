@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Foo\Grid\Action;
 
 use Foo\Grid\Component\Component;
 use Foo\Grid\Component\IComponent;
-use Foo\I18n\ITranslator;
+use Foo\Translate\ITranslator;
 use Opulence\Orm\IEntity;
 
 class Button extends Component implements IAction

@@ -1,9 +1,11 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Foo\Grid\Component;
 
 use Foo\Grid\Helper\StringHelper;
-use Foo\I18n\ITranslator;
+use Foo\Translate\ITranslator;
 
 class Component implements IComponent
 {

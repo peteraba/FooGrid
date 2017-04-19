@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Foo\Grid\Action;
 
 use Foo\Grid\Component\ComponentTest;

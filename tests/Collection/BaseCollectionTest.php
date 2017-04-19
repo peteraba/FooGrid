@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Foo\Grid\Collection;
 
 class BaseCollectionTest extends \PHPUnit\Framework\TestCase

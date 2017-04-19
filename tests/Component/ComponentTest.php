@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Foo\Grid\Component;
 
 class ComponentTest extends \PHPUnit\Framework\TestCase

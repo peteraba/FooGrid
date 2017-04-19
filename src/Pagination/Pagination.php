@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Foo\Grid\Pagination;
 
 use Foo\Grid\Action\Button;
@@ -65,7 +67,7 @@ class Pagination extends Component implements IPagination
     /**
      * @return int
      */
-    public function getTo()
+    public function getTo(): int
     {
         return min($this->totalCount, $this->from + $this->pageSize - 1);
     }
@@ -73,7 +75,7 @@ class Pagination extends Component implements IPagination
     /**
      * @return int
      */
-    public function getMinPageNumber()
+    public function getMinPageNumber(): int
     {
         $currentPage = (int)floor($this->from / $this->pageSize);
         $minPage     = (int)($currentPage - floor($this->numberCount / 2));
@@ -85,7 +87,7 @@ class Pagination extends Component implements IPagination
     /**
      * @return int
      */
-    public function getMaxPageNumber()
+    public function getMaxPageNumber(): int
     {
         $currentPage = (int)floor($this->from / $this->pageSize);
         $maxPage     = (int)($currentPage + floor($this->numberCount / 2) + 1);
@@ -97,7 +99,7 @@ class Pagination extends Component implements IPagination
     /**
      * @return array
      */
-    public function getPageNumbers()
+    public function getPageNumbers(): array
     {
         $minPageNumber = $this->getMinPageNumber();
         $maxPageNumber = $this->getMaxPageNumber();

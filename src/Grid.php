@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Foo\Grid;
 
 use Foo\Grid\Collection\Actions;
@@ -7,7 +9,7 @@ use Foo\Grid\Collection\Filters;
 use Foo\Grid\Component\Component;
 use Foo\Grid\Helper\StringHelper;
 use Foo\Grid\Table\ITable;
-use Foo\I18n\ITranslator;
+use Foo\Translate\ITranslator;
 
 class Grid extends Component implements IGrid
 {

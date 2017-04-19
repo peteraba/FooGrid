@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "d9c611778a520cad3607571a0c995783",
+    "content-hash": "4aab49fbe03161556d5a8df6a63cc65f",
     "packages": [
         {
             "name": "jeremeamia/SuperClosure",
@@ -201,6 +201,48 @@
                 "template"
             ],
             "time": "2017-04-15T15:41:34+00:00"
+        },
+        {
+            "name": "peteraba/foo-translate",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/peteraba/FooTranslate.git",
+                "reference": "707a62a397b16cda235516cd930d0d0245dee84e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/peteraba/FooTranslate/zipball/707a62a397b16cda235516cd930d0d0245dee84e",
+                "reference": "707a62a397b16cda235516cd930d0d0245dee84e",
+                "shasum": ""
+            },
+            "require": {
+                "opulence/opulence": "^1.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^6.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Foo\\Translate\\": [
+                        "src/",
+                        "tests/"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Peter Aba",
+                    "email": "peter@peteraba.com"
+                }
+            ],
+            "description": "Library for making international applications in Opulence easy.",
+            "time": "2017-04-16 12:56:31"
         },
         {
             "name": "psr/log",
@@ -1769,8 +1811,10 @@
         }
     ],
     "aliases": [],
-    "minimum-stability": "stable",
-    "stability-flags": [],
+    "minimum-stability": "dev",
+    "stability-flags": {
+        "peteraba/foo-translate": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Foo\Grid\Table;
 
 use Foo\Grid\Collection\Cells;
