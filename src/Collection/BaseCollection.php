@@ -58,6 +58,10 @@ class BaseCollection extends Component implements ArrayAccess, Countable, Iterat
      */
     public function current()
     {
+        if (!array_key_exists($this->position, $this->components)) {
+            return null;
+        }
+
         $component = $this->components[$this->position];
 
         return $component;
@@ -204,7 +208,7 @@ class BaseCollection extends Component implements ArrayAccess, Countable, Iterat
      */
     protected function verifyReturn($object, $className)
     {
-        if ($object instanceof $className) {
+        if ($object === null || $object instanceof $className) {
             return;
         }
 

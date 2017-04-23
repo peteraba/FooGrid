@@ -22,7 +22,7 @@ class Pages extends BaseCollection
         /** @var IPage $object */
         $object = parent::current();
 
-        $object = $this->verifyReturn($object, IPage::class);
+        $this->verifyReturn($object, IPage::class);
 
         return $object;
     }

@@ -22,7 +22,7 @@ class Filters extends BaseCollection
         /** @var IFilter $object */
         $object = parent::current();
 
-        $object = $this->verifyReturn($object, IFilter::class);
+        $this->verifyReturn($object, IFilter::class);
 
         return $object;
     }

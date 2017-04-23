@@ -18,19 +18,29 @@ class BaseCollectionTest extends \PHPUnit\Framework\TestCase
      *
      * @return BaseCollection
      */
-    public function createSut(string $tag = null, $attributes = [])
+    protected function createSut(string $tag = null, $attributes = [])
     {
         $className = static::SUT_CLASS_NAME;
 
         return new $className($tag, $attributes);
     }
 
-    public function testToStringContainsList()
+    /**
+     * @return array|BaseCollection
+     */
+    protected function createDefaultSut()
     {
-        $sut = $this->createSut();
+        $sut = $this->createSut('C', ['foo' => 'baz']);
 
         $sut[] = $this->element1;
         $sut[] = $this->element2;
+
+        return $sut;
+    }
+
+    public function testToStringContainsListElements()
+    {
+        $sut = $this->createDefaultSut();
 
         $actualResult = (string)$sut;
 
@@ -40,14 +50,77 @@ class BaseCollectionTest extends \PHPUnit\Framework\TestCase
 
     public function testToStringCanWrapList()
     {
-        $sut = $this->createSut('C', ['foo' => 'baz']);
-
-        $sut[] = $this->element1;
-        $sut[] = $this->element2;
+        $sut = $this->createDefaultSut();
 
         $actualResult = (string)$sut;
 
         $this->assertContains("<C foo=\"baz\">", $actualResult);
+    }
+
+    public function testCountElements()
+    {
+        $sut = $this->createDefaultSut();
+
+        $this->assertSame(2, $sut->count());
+    }
+
+    public function testCurrentRemainsUnchanged()
+    {
+        $sut = $this->createDefaultSut();
+
+        $this->assertSame($this->element1, $sut->current());
+        $this->assertSame($this->element1, $sut->current());
+    }
+
+    public function testNextChangesTheElementCurrentReturns()
+    {
+        $sut = $this->createDefaultSut();
+
+        $this->assertSame($this->element1, $sut->current());
+        $sut->next();
+        $this->assertSame($this->element2, $sut->current());
+    }
+
+    public function testOffsetSetCanReplaceElements()
+    {
+        $sut = $this->createDefaultSut();
+
+        $sut[0] = $this->element2;
+        $sut[1] = $this->element1;
+
+        $this->assertSame($this->element2, $sut->current());
+        $sut->next();
+        $this->assertSame($this->element1, $sut->current());
+    }
+
+    public function testCurrentReturnsNullWhenInternalCounterIsLargerThanTheNumberOfElements()
+    {
+        $sut = $this->createDefaultSut();
+
+        $this->assertSame($this->element1, $sut->current());
+        $sut->next();
+        $this->assertSame($this->element2, $sut->current());
+        $sut->next();
+        $this->assertSame(null, $sut->current());
+    }
+
+    public function testOffsetGetReturnsTheProperElement()
+    {
+        $sut = $this->createDefaultSut();
+
+        $this->assertSame($this->element1, $sut[0]);
+        $this->assertSame($this->element2, $sut[1]);
+    }
+
+    public function testRewindsSetsTheInternalCounterBackToDefault()
+    {
+        $sut = $this->createDefaultSut();
+
+        $this->assertSame($this->element1, $sut->current());
+        $sut->next();
+        $this->assertSame($this->element2, $sut->current());
+        $sut->rewind();
+        $this->assertSame($this->element1, $sut->current());
     }
 }
 
