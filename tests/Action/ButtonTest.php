@@ -10,7 +10,7 @@ require_once __DIR__ . '/../Component/ComponentTest.php';
 
 class ButtonTest extends ComponentTest
 {
-    const DEFAULT_TEMPLATE = '<button foo="foo baz" bar="bar baz">Test</button>';
+    const DEFAULT_TEMPLATE = '<button foo="foo2" bar="bar baz">Test</button>';
 
     const TAG = 'button';
 
@@ -19,7 +19,41 @@ class ButtonTest extends ComponentTest
 
     public function setUp()
     {
-        $this->sut = new Button(static::LABEL, static::TAG, $this->getDefaultAttributes());
+        $fooer = function() {
+            return 'foo2';
+        };
+        $attributeCallbacks = [
+            static::ATTRIBUTE_FOO => $fooer
+        ];
+
+        $this->sut = new Button(
+            static::LABEL,
+            static::TAG,
+            $this->getDefaultAttributes(),
+            $attributeCallbacks
+        );
+    }
+
+    public function tearDown()
+    {
+        unset($this->sut);
+
+        parent::tearDown();
+    }
+
+    public function testToStringWillCallCallbacksOnAttributesIfDefined()
+    {
+        $actualResult = $this->sut->__toString();
+
+        $this->assertContains('foo2', $actualResult);
+    }
+
+    public function testDuplicateDuplicatesButDoesNotClone()
+    {
+        $actualResult = $this->sut->duplicate();
+
+        $this->assertEquals($this->sut, $actualResult);
+        $this->assertNotSame($this->sut, $actualResult);
     }
 }
 

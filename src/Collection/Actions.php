@@ -61,7 +61,7 @@ class Actions extends BaseCollection
      */
     public function duplicate(): Actions
     {
-        $actionsCopy = new Actions();
+        $actionsCopy = new Actions($this->tag, $this->attributes);
 
         foreach ($this->components as $action) {
             $actionCopy    = $action->duplicate();

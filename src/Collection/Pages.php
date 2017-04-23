@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 namespace Foo\Grid\Collection;
 
-use Foo\Grid\Page\IPage;
+use Foo\Grid\Pagination\IPage;
 use InvalidArgumentException;
 use LogicException;
 

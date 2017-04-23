@@ -5,14 +5,10 @@ declare(strict_types = 1);
 namespace Foo\Grid\Component;
 
 use Foo\Translate\ITranslator;
+use Foo\Grid\IStringer;
 
-interface IComponent
+interface IComponent extends IStringer
 {
-    /**
-     * @return string
-     */
-    public function __toString(): string;
-
     /**
      * @param int    $num
      * @param string $whitespace
