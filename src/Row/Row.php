@@ -89,7 +89,13 @@ class Row extends Component implements IRow
         $this->content = (string)$this->cells;
 
         if ($this->actions) {
-            $this->content .= new Cell((string)$this->actions, 'actions');
+            $cell = new Cell((string)$this->actions, 'actions');
+
+            if ($this->translator) {
+                $cell->setTranslator($this->translator);
+            }
+
+            $this->content .= $cell;
         }
 
         $return = parent::__toString();

@@ -105,14 +105,14 @@ class Component implements IComponent
         $content = $this->content;
 
         if ($this->translator) {
-            $content = $this->translator->translate($this->content);
+            $content = $this->translator->translate($content);
 
             if (substr($content, 0, 2) === '{{') {
                 $content = $this->content;
             }
         }
 
-        return StringHelper::wrapInTag($content, $this->tag, $this->attributes);
+        return StringHelper::wrapInTag((string)$content, $this->tag, $this->attributes);
     }
 }
 

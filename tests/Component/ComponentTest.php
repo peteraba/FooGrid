@@ -4,9 +4,12 @@ declare(strict_types = 1);
 
 namespace Foo\Grid\Component;
 
+use Foo\Translate\ITranslator;
+
 class ComponentTest extends \PHPUnit\Framework\TestCase
 {
     const DEFAULT_TEMPLATE = '<div foo="foo baz" bar="bar baz">Test</div>';
+    const TRANSLATED_HTML = '<div foo="foo baz" bar="bar baz">Translated</div>';
 
     const LABEL = 'Test';
     const TAG = 'div';
@@ -32,6 +35,19 @@ class ComponentTest extends \PHPUnit\Framework\TestCase
     public function testToStringReturnsExpectedHtml()
     {
         $this->assertSame(static::DEFAULT_TEMPLATE, (string)$this->sut);
+    }
+
+    public function testToStringCanTranslateTheContent()
+    {
+        $translator = $this->getMockForAbstractClass(ITranslator::class);
+        $translator
+            ->expects($this->any())
+            ->method('translate')
+            ->willReturn('Translated');
+
+        $this->sut->setTranslator($translator);
+
+        $this->assertSame(static::TRANSLATED_HTML, (string)$this->sut);
     }
 
     public function testAppendToAttributeLeavesOldAttributesIntact()

@@ -11,6 +11,7 @@ require_once __DIR__ . '/../Component/ComponentTest.php';
 class CellTest extends ComponentTest
 {
     const DEFAULT_TEMPLATE = '<td foo="foo baz" bar="bar baz" class="td-group">Test</td>';
+    const TRANSLATED_HTML = '<td foo="foo baz" bar="bar baz" class="td-group">Translated</td>';
 
     const TAG = 'td';
     const GROUP = 'group';

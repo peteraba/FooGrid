@@ -11,6 +11,7 @@ require_once __DIR__ . '/../Component/ComponentTest.php';
 class ButtonTest extends ComponentTest
 {
     const DEFAULT_TEMPLATE = '<button foo="foo2" bar="bar baz">Test</button>';
+    const TRANSLATED_HTML = '<button foo="foo2" bar="bar baz">Translated</button>';
 
     const TAG = 'button';
 
