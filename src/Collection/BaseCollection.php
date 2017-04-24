@@ -147,7 +147,7 @@ class BaseCollection extends Component implements ArrayAccess, Countable, Iterat
             $component->setIndentation($num + 1, $whitespace);
         }
 
-        $this->indentation = str_repeat($num, $whitespace);
+        $this->indentation = str_repeat($whitespace, $num);
     }
 
     /**

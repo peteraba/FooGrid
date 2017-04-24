@@ -4,6 +4,9 @@ declare(strict_types = 1);
 
 namespace Foo\Grid\Collection;
 
+use Foo\Translate\ITranslator;
+use PHPUnit_Framework_MockObject_MockObject as MockObject;
+
 class BaseCollectionTest extends \PHPUnit\Framework\TestCase
 {
     const SUT_CLASS_NAME = BaseCollection::class;
@@ -121,6 +124,36 @@ class BaseCollectionTest extends \PHPUnit\Framework\TestCase
         $this->assertSame($this->element2, $sut->current());
         $sut->rewind();
         $this->assertSame($this->element1, $sut->current());
+    }
+
+    public function testTranslatorSetsTranslatorOfSubcomponents()
+    {
+        if (!($this->element1 instanceof MockObject)) {
+            $this->markTestSkipped();
+        }
+
+        $sut = $this->createDefaultSut();
+
+        $this->element1->expects($this->atLeastOnce())->method('setTranslator');
+        $this->element2->expects($this->atLeastOnce())->method('setTranslator');
+
+        $translator = $this->getMockForAbstractClass(ITranslator::class);
+
+        $sut->setTranslator($translator);
+    }
+
+    public function testSetIndentationSetsIndentationOfSubcomponents()
+    {
+        if (!($this->element1 instanceof MockObject)) {
+            $this->markTestSkipped();
+        }
+
+        $sut = $this->createDefaultSut();
+
+        $this->element1->expects($this->atLeastOnce())->method('setIndentation');
+        $this->element2->expects($this->atLeastOnce())->method('setIndentation');
+
+        $sut->setIndentation(4, "\t");
     }
 }
 
