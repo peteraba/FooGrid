@@ -105,9 +105,7 @@ class GridTest extends \PHPUnit\Framework\TestCase
             ->disableOriginalConstructor()
             ->getMock();
 
-        $translator = $this->getMockBuilder(ITranslator::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        $translator = $this->getMockForAbstractClass(ITranslator::class);
 
         $sut = new Grid($table);
 

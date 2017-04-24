@@ -8,6 +8,7 @@ use Foo\Grid\Cell\ICell;
 use Foo\Grid\Collection\Cells;
 use Foo\Grid\Collection\Rows;
 use Foo\Grid\Row\IRow;
+use Foo\Translate\ITranslator;
 use PHPUnit_Framework_MockObject_MockObject as MockObject;
 use PHPUnit\Framework\TestCase;
 
@@ -55,7 +56,7 @@ class TableTest extends TestCase
         $this->assertContains((string)$this->rows, (string)$this->sut);
     }
 
-    public function testIndentationSetsIndentationOfHeadersAndRows()
+    public function testIndentationSetsIndentationOfHeaders()
     {
         $head1 = $this->getMockForAbstractClass(ICell::class);
         $head2 = $this->getMockForAbstractClass(ICell::class);
@@ -63,6 +64,20 @@ class TableTest extends TestCase
         $head1->expects($this->atLeastOnce())->method('setIndentation');
         $head2->expects($this->atLeastOnce())->method('setIndentation');
 
+        $this->header
+            ->expects($this->any())
+            ->method('valid')
+            ->willReturnOnConsecutiveCalls(true, true, false);
+        $this->header
+            ->expects($this->any())
+            ->method('current')
+            ->willReturnOnConsecutiveCalls($head1, $head2);
+
+        $this->sut->setIndentation(4, "\t");
+    }
+
+    public function testIndentationSetsIndentationOfRows()
+    {
         $row1 = $this->getMockForAbstractClass(IRow::class);
         $row2 = $this->getMockForAbstractClass(IRow::class);
 
@@ -76,7 +91,20 @@ class TableTest extends TestCase
         $this->rows
             ->expects($this->any())
             ->method('current')
-            ->willReturnOnConsecutiveCalls($head1, $head2);
+            ->willReturnOnConsecutiveCalls($row1, $row2);
+
+        $this->sut->setIndentation(4, "\t");
+    }
+
+    public function testTranslatorSetsTranslatorOfHeaders()
+    {
+        $head1 = $this->getMockForAbstractClass(ICell::class);
+        $head2 = $this->getMockForAbstractClass(ICell::class);
+
+        $head1->expects($this->atLeastOnce())->method('setTranslator');
+        $head2->expects($this->atLeastOnce())->method('setTranslator');
+
+        $translator = $this->getMockForAbstractClass(ITranslator::class);
 
         $this->header
             ->expects($this->any())
@@ -85,9 +113,9 @@ class TableTest extends TestCase
         $this->header
             ->expects($this->any())
             ->method('current')
-            ->willReturnOnConsecutiveCalls($row1, $row2);
+            ->willReturnOnConsecutiveCalls($head1, $head2);
 
-        $this->sut->setIndentation(4, "\t");
+        $this->sut->setTranslator($translator);
     }
 }
 
